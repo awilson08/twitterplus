@@ -1,0 +1,9 @@
+<h1>Trending Topics</h1>
+<p><%= link_to "Home", home_url %></p>
+<ul>
+
+<%@trending.each do |trend| %>
+		<li> <%= trend.text%> </li>
+	<% end %>
+	</ul>
+</ul>

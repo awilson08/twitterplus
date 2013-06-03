@@ -1,0 +1,23 @@
+<h1>Public Timeline</h1>
+<p><%= link_to "Home", home_url %></p>
+  
+
+<table>
+  <thead>
+  	<tr>
+  		<th> Username </th>
+  		<th> Tweet </th> 
+  		<th> Time </th> 
+  	</tr>
+  </thead>
+<tbody>
+<%@publictimeline.each do |tweet| %>
+		<tr>
+			<td> <%= link_to tweet.username, show_user_url(tweet.username) %> </td>
+			<td> <%= tweet.text %> </td>
+			<td> <%=tweet.timeStamp.to_s(:db) %> </td>
+
+		</tr>		
+	<% end %>
+  </tbody>
+</table>

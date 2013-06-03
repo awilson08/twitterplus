@@ -2,10 +2,20 @@ TwitterBasicPlus::Application.routes.draw do
 
   
 
-root :to => 'home#index'
-#get "home/index"
+get "/most_popular_tweets", controller: 'popular_tweets', action: 'mostpop', as: 'most_popular_tweets'
+get "/least_popular_tweets", controller: 'popular_tweets', action: 'leastpop', as: 'least_popular_tweets'
+
+get "/public_timeline", controller: 'public_timeline', action: 'show', as: 'show_public_timeline'
+
+get '/trending', controller: 'trending', action: 'show', as: 'show_trending'
+
+root :to => 'home#index', as: 'home'
+
+get '/random_users', controller: 'users', action: 'random', as: 'random_users'
 
 get '/:username', controller: 'users', action: 'show', as: 'show_user'
+
+
 #get "users/show"
 
 
