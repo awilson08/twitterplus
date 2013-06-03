@@ -1,0 +1,53 @@
+<h1>Users</h1>
+
+<%= image_tag @user.picture %>
+
+<p>Username: <%=@user.username %></p>
+<p>Name: <%=@user.name %></p>
+<p>Biography: <%=@user.biography %></p>
+<p>Email Address: <%=@user.emailaddress %></p>
+<p>
+	Followers: 
+	<ul>
+	<%@followers.each do |follower| %>
+		<li> <%= follower.username%> </li>
+	<% end %>
+	</ul>
+</p>
+
+<p>
+	Following: 
+	<ul>
+	<%@following.each do |following| %>
+		<li> <%= following.iFollow%> </li>
+	<% end %>
+	</ul>
+
+</p>
+
+<p>Lists:
+	<ul>
+	<%@lists.each do |list| %>
+		<li> <%= list.Lists_listID %> </li>
+	<% end %>
+	</ul>
+
+</p>
+
+<p>Collections:
+
+</p>
+
+<p>Tweets:
+	<ul>
+	<%@tweets.each do |tweet| %>
+		<% if tweet.privacySetting != true %>
+			<li> <%= tweet.text %> </li>
+		<% end %>
+	<% end %>
+</ul>
+
+</p>
+ 	<!--tweets not private, once user is signed in, they can see private tweets -->
+
+
