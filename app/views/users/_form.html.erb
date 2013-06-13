@@ -1,0 +1,55 @@
+
+<%= form_for @user do |f| %>
+
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+
+   <div class="field">
+    <%= f.label "Email Address" %><br />
+    <%= f.text_field :emailaddress %>
+  </div>
+
+
+  <div class="field">
+    <%= f.label "Create a password" %><br />
+    <%= f.password_field :password %>
+  </div>
+
+    <div class="field">
+    <%= f.label :password_confirmation %><br />
+    <%= f.password_field :password_confirmation %>
+  </div>
+
+   <div class="field">
+    <%= f.label "Biography (140 Characters)" %><br />
+    <%= f.text_area :biography, :value => "Tell us about yourself...", :size => "22x5" %>
+  </div>
+
+ 
+  <div class="field">
+    <%= f.label "Choose a Username" %><br />
+    <%= f.text_field :username %>
+  </div>
+
+  <% if @user.errors.any? %>
+   <div id="error_explanation">
+      
+
+      <ul>
+      <% @user.errors.full_messages.each do |msg| %>
+        <font color="red"><li><%= msg %></li>
+      <% end %>
+      </ul>
+
+    </div>
+
+  <% end %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+ 
+
+  <% end %>

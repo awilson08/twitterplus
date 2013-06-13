@@ -1,26 +1,46 @@
-<h1>Users</h1>
-<p><%= link_to "Home", home_url %></p>
+<%= render "shared/nav" %>
 
-<%= image_tag @user.picture %>
+<font color="red"> <p id="notice"><%= notice %></p> </font>
 
-<p>Username: <%=@user.username %></p>
+<center>
+<% if current_user != nil && @user.username == current_user.username %>
+	<%= render "shared/tweet" %>
+
+<%end%>
+</center>
+
+
+<% if (current_user != nil && current_user != @user && (current_user.following?(@user) == false)) then %>
+		<%= render "follow" %>
+<% elsif (current_user != nil && current_user != @user && (current_user.following?(@user) == true)) then%>
+		<%= render "unfollow" %>
+<%end%>
+
+<h1>Profile</h1>
+
+<% if @user.picture != nil %>
+	<%= image_tag @user.picture %>
+<% end %>
+
+
+<p>Username: <%= @user.username %></p>
 <p>Name: <%=@user.name %></p>
 <p>Biography: <%=@user.biography %></p>
-<p>Email Address: <%=@user.emailaddress %></p>
+
 <p>
-	Followers: 
+	Followers: <%=@followerscount %>
 	<ul>
 	<%@followers.each do |follower| %>
-		<li> <%= follower.username%> </li>
+		<li> <%= link_to follower.username, show_user_url(follower.username)%> </li>
 	<% end %>
 	</ul>
 </p>
 
 <p>
-	Following: 
+	Following:  <%=@followingcount %>
 	<ul>
 	<%@following.each do |following| %>
-		<li> <%= following.iFollow%> </li>
+		<li><%= link_to following.iFollow, show_user_url(following.iFollow)%> </li>
 	<% end %>
 	</ul>
 
@@ -29,31 +49,35 @@
 <p>Lists:
 	<ul>
 	<%@lists.each do |list| %>
-		<li> <%= list.Lists_listID %> </li>
+		<li> <%= list.listName%> </li>
 	<% end %>
 	</ul>
 
 </p>
 
-<!-- <p>Collections:
+<p>Collections:
 	<ul>
-	<@collections.each do |collection| %>
-		<li> <collection.name %> </li>
-	< end %>
+	<%@collectionIDs.each do |collection| %>
+		<li> <%=collection.name %> </li>
+	<% end %>
 	</ul>
 
-</p> -->
+</p>
 
 <p>Tweets:
 	<ul>
 	<%@tweets.each do |tweet| %>
-		<% if tweet.privacySetting != true %>
-			<li> <%= tweet.text %> </li>
+		<% if tweet.privacySetting == false %>
+			<li> <%=tweet.username %> <%= tweet.text %> &nbsp &nbsp
+					<%= tweet.timeStamp.to_s(:db) %> 
+					
+					<% if current_user != nil && @user.username == current_user.username %>
+						&nbsp<%= link_to "delete", tweets_url, method: 'delete' %>
+					<%end%>
+			</li>
 		<% end %>
 	<% end %>
 </ul>
 
 </p>
  	<!--tweets not private, once user is signed in, they can see private tweets -->
-
-

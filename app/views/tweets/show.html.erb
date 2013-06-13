@@ -1,0 +1,7 @@
+<%= render "shared/nav" %>
+
+<h1>Tweets</h1>
+
+<%= link_to @tweet.username, show_user_url(@tweet.username) %>
+<%= @tweet.text %> 
+ <%=@tweet.timeStamp.to_s(:db) %>

@@ -1,0 +1,23 @@
+<table>
+  <thead>
+  	<tr>
+  		<th> Username </th>
+      <th> Tweet ID </th>
+      <th> Like Score </th>
+      <th> Tweet Text </th>
+
+  	</tr>
+  </thead>
+<tbody>
+
+<%@tweets.each do |tweet, score| %>
+		<tr>
+			<td> <%= tweet.username %> </td>
+      <td> <%= tweet.id%> </td>
+      <td> <%= score %> </td>
+      <td> <%= tweet.text %> </td>
+
+		</tr>		
+	<% end %>
+  </tbody>
+</table>

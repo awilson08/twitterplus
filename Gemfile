@@ -2,10 +2,13 @@ source 'https://rubygems.org'
 
 gem 'rails', '3.2.13'
 
+gem 'bcrypt-ruby'
+
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'mysql2'
+#gem 'composite_primary_keys', '=3.1.0'
 
 
 # Gems used only for assets and not required

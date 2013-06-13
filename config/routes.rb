@@ -1,22 +1,37 @@
 TwitterBasicPlus::Application.routes.draw do
 
-  
-
-get "/most_popular_tweets", controller: 'popular_tweets', action: 'mostpop', as: 'most_popular_tweets'
-get "/least_popular_tweets", controller: 'popular_tweets', action: 'leastpop', as: 'least_popular_tweets'
-
-get "/public_timeline", controller: 'public_timeline', action: 'show', as: 'show_public_timeline'
-
-get '/trending', controller: 'trending', action: 'show', as: 'show_trending'
 
 root :to => 'home#index', as: 'home'
 
-get '/random_users', controller: 'users', action: 'random', as: 'random_users'
+get '/sessions/new' => 'Sessions#new', as: 'signin'
+post '/sessions' => 'Sessions#create', as: 'sessions'
+delete '/sessions' => 'Sessions#destroy', as: 'session'
 
+#tweets
+get "tweets/new", controller: 'tweets', action: 'new', as: 'new_tweet'
+get 'tweets/:id', controller: 'tweets', action: 'show', as: 'show_tweet'
+get "/tweets", controller: 'tweets', action: 'index', as: 'tweets'
+post "/tweets", controller: 'tweets', action: 'create'
+delete 'tweets/:id', controller: 'tweets', action: 'destroy'
+get "/most_popular_tweets", controller: 'tweets', action: 'mostpop', as: 'most_popular_tweets'
+get "/least_popular_tweets", controller: 'tweets', action: 'leastpop', as: 'least_popular_tweets'
+#resources :tweets
+
+#hashtags
+get '/trending', controller: 'trending', action: 'show', as: 'show_trending'
+
+#follow
+delete '/follows', controller: 'follows', action: 'destroy', as: 'follows'
+resources :follows, :only => [:create]
+
+
+#likes
+resources :likes, :only => [:create, :destroy]
+
+#users
+resources :users
 get '/:username', controller: 'users', action: 'show', as: 'show_user'
-
-
-#get "users/show"
+#get '/users', controller: 'users', action: 'index', as: 'users'
 
 
   # The priority is based upon order of creation:

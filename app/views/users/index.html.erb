@@ -1,0 +1,30 @@
+<%= render "shared/nav" %>
+<h1>Users</h1>
+
+
+<table>
+  <thead>
+  	<tr>
+  		<th> Pic </th>
+  		<th> Username </th>
+  		<th> Name </th>
+      <th> Biography </th>
+
+  		
+  	</tr>
+  </thead>
+<tbody>
+
+<%@users.each do |user| %>
+		<tr>
+			<td> <%= image_tag user.picture %> </td>
+			<td> <%= link_to user.username, show_user_url(user.username) %> </td>
+			<td> <%= user.name %> </td>
+      <td> <%= user.biography %> </td>
+
+			
+
+		</tr>		
+	<% end %>
+  </tbody>
+</table>

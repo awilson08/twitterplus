@@ -1,0 +1,7 @@
+
+<%= button_to "Like", likes_path(:id => @user.id), 
+:method => :post, :remote => 'true', :class => "btn btn-large btn-primary"%>
+
+<!--< form_for(current_user.follow!(@user)) do |f| %>
+  	< f.submit "Follow", class: "btn btn-large btn-primary" %>
+< end %> -->

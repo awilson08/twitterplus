@@ -1,6 +1,6 @@
 class CreateDatabase < ActiveRecord::Migration
   def up
-  	  create_table "Collections", :primary_key => "collectionID", :force => true do |t|
+  create_table "Collections", :primary_key => "collectionID", :force => true do |t|
     t.string "username", :limit => 25
     t.string "name",     :limit => 25
   end
@@ -44,26 +44,21 @@ class CreateDatabase < ActiveRecord::Migration
   add_index "MadeOf", ["Tweets_ID"], :name => "Tweets_ID"
 
   create_table "Tweets", :primary_key => "ID", :force => true do |t|
-    t.string   "username",       :limit => 25
-    t.string   "text",           :limit => 140
-    t.datetime "timeStamp",                     :null => false
-    t.boolean  "privacySetting"
-    t.boolean  "retweet"
+    t.string    "username",       :limit => 25
+    t.string    "text",           :limit => 140
+    t.timestamp "timeStamp",                     :null => false
+    t.boolean   "privacySetting"
+    t.boolean   "retweet"
   end
 
   add_index "Tweets", ["username"], :name => "username"
 
   create_table "Users", :primary_key => "username", :force => true do |t|
-    t.string "name",         :limit => 30
-    t.string "password",     :limit => 25
-    t.string "emailaddress", :limit => 50
-    t.string "biography",    :limit => 140
-    t.string "picture",      :limit => 140
-  end
-
-  create_table "tweets", :force => true do |t|
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.string "name",            :limit => 30
+    t.string "password_digest"
+    t.string "emailaddress",    :limit => 50
+    t.string "biography",       :limit => 140
+    t.string "picture",         :limit => 140
   end
   end
 

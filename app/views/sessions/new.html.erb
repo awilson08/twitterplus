@@ -1,0 +1,19 @@
+<%= render "shared/nav" %>
+
+<h1>Sign In</h1>
+
+<font color="red"> <p id="notice"><%= notice %></p> </font>
+
+<%= form_tag sessions_url do %>
+  <div>
+    <%= label_tag "Email Address" %> <br>
+    <%= text_field_tag :emailaddress %>
+  </div>
+
+  <div>
+    <%= label_tag :password %><br>
+    <%= password_field_tag :password %>
+  </div>
+
+  <%= submit_tag "Sign In" %>
+<% end %>
