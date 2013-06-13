@@ -117,22 +117,5 @@ end
 
   end
 
-  # def checkuser
-  #   @user = User.find_by_username(params[:username])
-  #   if @user
-  #     render :text => true, :layout => false
-  #   elsif params[:username].blank?
-  #     render :text => true, :layout => false
-  #   else
-  #     render :text => false, :layout => false
-  #   end
-  # end
-
-  # @following = Follow.find(:all, :select => "iFollow", :conditions => ['username = ?', @user.username ])
-  # @followers = Follow.find(:all, :select => "username", :conditions => ['iFollow = ?', @user.username ])
-
-
-  
-
 
 end

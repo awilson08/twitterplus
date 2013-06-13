@@ -10,17 +10,18 @@
 </center>
 
 
-<% if (current_user != nil && current_user != @user && (current_user.following?(@user) == false)) then %>
-		<%= render "follow" %>
-<% elsif (current_user != nil && current_user != @user && (current_user.following?(@user) == true)) then%>
-		<%= render "unfollow" %>
-<%end%>
 
 <h1>Profile</h1>
 
 <% if @user.picture != nil %>
 	<%= image_tag @user.picture %>
 <% end %>
+
+<% if (current_user != nil && current_user != @user && (current_user.following?(@user) == false)) then %>
+		<%= render "follow" %>
+<% elsif (current_user != nil && current_user != @user && (current_user.following?(@user) == true)) then%>
+		<%= render "unfollow" %>
+<%end%>
 
 
 <p>Username: <%= @user.username %></p>

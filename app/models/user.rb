@@ -16,26 +16,26 @@ class User < ActiveRecord::Base
 
 
     def following?(other_user)
-        return not(Follow.find(:all, :select => "iFollow", 
-          :conditions => ["username = #{username}  and iFollow = #{other_user.username}"]).nil?)
+      return Follow.where(:username => username , :iFollow => other_user.username).exists?
+
     end
 
     def follow!(other_user)
       if (following?(other_user) == false)
-        Follow.new(:username => username, :iFollow => other_user.username)
+        @follow = Follow.new(:username => username, :iFollow => other_user.username)
+        
+
       end
     end
 
     def unfollow!(other_user)
-      @follow = Follow.find(username, other_user.username)
+      @follow = Follow.where("username = ? and iFollow = ?",  username, other_user.username).first
+     @follow.destroy
+      #puts @follow.class
+     
       
-
-      #@follow.destroy_all
-      
-      # Follow.find_by_sql("SELECT *
-      #                     FROM Follows 
-      #                     WHERE Follows.username = #{username} 
-      #                     AND Follows.iFollow = #{other_user.username}")
+      #Follow.collections.delete("DELETE FROM Follows 
+                        #WHERE username = #{username} AND iFollow = #{other_user.username}")
 
     end
 

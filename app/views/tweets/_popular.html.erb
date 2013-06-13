@@ -12,7 +12,7 @@
 
 <%@tweets.each do |tweet, score| %>
 		<tr>
-			<td> <%= tweet.username %> </td>
+			<td> <%= link_to tweet.username, show_user_url(tweet.username) %> </td>
       <td> <%= tweet.id%> </td>
       <td> <%= score %> </td>
       <td> <%= tweet.text %> </td>
